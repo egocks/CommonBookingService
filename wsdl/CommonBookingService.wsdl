@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="..." targetNamespace="http://service.webservice.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.webservice.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:ns1="cancelBookingRequest" xmlns:ns2="cancelBookingResponse" xmlns:ns3="getListOfBookingsRequest" xmlns:ns4="getListOfBookingsResponse" xmlns:ns5="getWholeSupportedMapRequest" xmlns:ns6="getWholeSupportedMapResponse" xmlns:ns7="getBookingRequest" xmlns:ns8="getBookingResponse" xmlns:tns="http://service.webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://service.webservice.com/" version="1.0">
+
+  <xs:import namespace="cancelBookingRequest"/>
+
+  <xs:import namespace="cancelBookingResponse"/>
+
+  <xs:import namespace="getListOfBookingsRequest"/>
+
+  <xs:import namespace="getListOfBookingsResponse"/>
+
+  <xs:import namespace="getWholeSupportedMapRequest"/>
+
+  <xs:import namespace="getWholeSupportedMapResponse"/>
+
+  <xs:import namespace="getBookingRequest"/>
+
+  <xs:import namespace="getBookingResponse"/>
+
+  <xs:element name="cancelBooking" type="tns:cancelBooking"/>
+
+  <xs:element name="cancelBookingResponse" type="tns:cancelBookingResponse"/>
+
+  <xs:element name="getBooking" type="tns:getBooking"/>
+
+  <xs:element name="getBookingResponse" type="tns:getBookingResponse"/>
+
+  <xs:element name="getListOfBookings" type="tns:getListOfBookings"/>
+
+  <xs:element name="getListOfBookingsResponse" type="tns:getListOfBookingsResponse"/>
+
+  <xs:element name="getWholeSupportedMap" type="tns:getWholeSupportedMap"/>
+
+  <xs:element name="getWholeSupportedMapResponse" type="tns:getWholeSupportedMapResponse"/>
+
+  <xs:complexType name="cancelBooking">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="ns1:cancelBookingRequestImpl"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType abstract="true" name="abstractRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="agentId" type="xs:string"/>
+      <xs:element name="gzipResponse" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="language" type="xs:string"/>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element minOccurs="0" name="rqId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cancelBookingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns2:cancelBookingResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType abstract="true" name="abstractResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cpuTime" type="xs:string"/>
+      <xs:element minOccurs="0" name="dateAtServer" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+      <xs:element name="resultCode" type="xs:int"/>
+      <xs:element minOccurs="0" name="rqId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getListOfBookings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="ns3:getListOfBookingsRequestImpl"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getListOfBookingsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:getListOfBookingsResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="booking">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="formalizationDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="fromDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="grossPrice" type="tns:amount"/>
+      <xs:element minOccurs="0" name="locator" type="xs:string"/>
+      <xs:element minOccurs="0" name="netPrice" type="tns:amount"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+      <xs:element minOccurs="0" name="titular" type="xs:string"/>
+      <xs:element minOccurs="0" name="toDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="yourReference" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="amount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="currencyCode" type="xs:string"/>
+      <xs:element name="value" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getWholeSupportedMap">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="ns5:getWholeSupportedMapRequestImpl"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getWholeSupportedMapResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:getWholeSupportedMapResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="country">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="states" nillable="true" type="tns:state"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="state">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="airports" nillable="true" type="tns:airport"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="cities" nillable="true" type="tns:city"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="airport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iataCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="city">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="hotels" nillable="true" type="tns:hotel"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hotel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getBooking">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="ns7:getBookingRequestImpl"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getBookingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns8:getBookingResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cancellationCost">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="from" type="xs:string"/>
+      <xs:element minOccurs="0" name="grossPrice" type="tns:amount"/>
+      <xs:element minOccurs="0" name="netPrice" type="tns:amount"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="destinationActivityService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="commentForBookingDepartment" type="xs:string"/>
+      <xs:element minOccurs="0" name="commentForDestinationActivity" type="xs:string"/>
+      <xs:element minOccurs="0" name="destinationActivityDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="destinationActivityDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="destinationActivityId" type="xs:string"/>
+      <xs:element minOccurs="0" name="destinationActivityName" type="xs:string"/>
+      <xs:element minOccurs="0" name="grossPrice" type="tns:amount"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="meetingPointDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="meetingPointId" type="xs:string"/>
+      <xs:element minOccurs="0" name="meetingPointName" type="xs:string"/>
+      <xs:element minOccurs="0" name="netPrice" type="tns:amount"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="supplements" nillable="true" type="tns:destinationActivitySupplement"/>
+      <xs:element minOccurs="0" name="voucherText" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="destinationActivitySupplement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hotelService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boardCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="boardName" type="xs:string"/>
+      <xs:element minOccurs="0" name="cityId" type="xs:string"/>
+      <xs:element minOccurs="0" name="cityName" type="xs:string"/>
+      <xs:element minOccurs="0" name="commentForBookingDepartment" type="xs:string"/>
+      <xs:element minOccurs="0" name="commentForHotel" type="xs:string"/>
+      <xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="countryName" type="xs:string"/>
+      <xs:element minOccurs="0" name="establishmentId" type="xs:string"/>
+      <xs:element minOccurs="0" name="establishmentName" type="xs:string"/>
+      <xs:element minOccurs="0" name="grossPrice" type="tns:amount"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="netPrice" type="tns:amount"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="remarks" nillable="true" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roomOccupationsList" nillable="true" type="tns:roomOccupation"/>
+      <xs:element minOccurs="0" name="stateId" type="xs:string"/>
+      <xs:element minOccurs="0" name="stateName" type="xs:string"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+      <xs:element minOccurs="0" name="voucherText" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="roomOccupation">
+    <xs:sequence>
+      <xs:element name="adultsPerRoom" type="xs:int"/>
+      <xs:element minOccurs="0" name="checkIn" type="xs:string"/>
+      <xs:element minOccurs="0" name="checkOut" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="childrenAges" nillable="true" type="xs:int"/>
+      <xs:element name="childrenPerRoom" type="xs:int"/>
+      <xs:element name="infantsPerRoom" type="xs:int"/>
+      <xs:element name="numberOfRooms" type="xs:int"/>
+      <xs:element minOccurs="0" name="roomCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="roomName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saleDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="base" type="tns:amount"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="taxType" type="xs:string"/>
+      <xs:element minOccurs="0" name="taxes" type="tns:amount"/>
+      <xs:element name="taxesPercent" type="xs:double"/>
+      <xs:element minOccurs="0" name="total" type="tns:amount"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="transferService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="commentForBookingDepartment" type="xs:string"/>
+      <xs:element minOccurs="0" name="commentForTransfer" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="dropoffs" nillable="true" type="tns:dropoff"/>
+      <xs:element minOccurs="0" name="duration" type="xs:string"/>
+      <xs:element minOccurs="0" name="estimatedPickupTime" type="xs:string"/>
+      <xs:element minOccurs="0" name="grossPrice" type="tns:amount"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="longDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="netPrice" type="tns:amount"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="pickups" nillable="true" type="tns:pickup"/>
+      <xs:element minOccurs="0" name="shortDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+      <xs:element minOccurs="0" name="transferId" type="xs:string"/>
+      <xs:element minOccurs="0" name="transferType" type="xs:string"/>
+      <xs:element minOccurs="0" name="transportArrivalInstructions" type="xs:string"/>
+      <xs:element minOccurs="0" name="transportDepartureInstructions" type="xs:string"/>
+      <xs:element minOccurs="0" name="voucherText" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="dropoff">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:string"/>
+      <xs:element minOccurs="0" name="airportId" type="xs:string"/>
+      <xs:element minOccurs="0" name="comments" type="xs:string"/>
+      <xs:element minOccurs="0" name="flightDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="flightNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="flightOriginOrDestination" type="xs:string"/>
+      <xs:element minOccurs="0" name="flightTime" type="xs:string"/>
+      <xs:element minOccurs="0" name="hotelId" type="xs:string"/>
+      <xs:element minOccurs="0" name="hotelName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="passengers" nillable="true" type="tns:passenger"/>
+      <xs:element minOccurs="0" name="resortId" type="xs:string"/>
+      <xs:element name="totalBigLuggages" type="xs:int"/>
+      <xs:element name="totalChildren" type="xs:int"/>
+      <xs:element name="totalInfants" type="xs:int"/>
+      <xs:element name="totalPax" type="xs:int"/>
+      <xs:element name="totalWheelChairs" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="passenger">
+    <xs:sequence>
+      <xs:element name="age" type="xs:int"/>
+      <xs:element minOccurs="0" name="birthDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pickup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:string"/>
+      <xs:element minOccurs="0" name="airportId" type="xs:string"/>
+      <xs:element minOccurs="0" name="comments" type="xs:string"/>
+      <xs:element minOccurs="0" name="flightDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="flightNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="flightOriginOrDestination" type="xs:string"/>
+      <xs:element minOccurs="0" name="flightTime" type="xs:string"/>
+      <xs:element minOccurs="0" name="hotelId" type="xs:string"/>
+      <xs:element minOccurs="0" name="hotelName" type="xs:string"/>
+      <xs:element minOccurs="0" name="mobile" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="passengers" nillable="true" type="tns:passenger"/>
+      <xs:element minOccurs="0" name="resortId" type="xs:string"/>
+      <xs:element name="totalBigLuggages" type="xs:int"/>
+      <xs:element name="totalChildren" type="xs:int"/>
+      <xs:element name="totalInfants" type="xs:int"/>
+      <xs:element name="totalPax" type="xs:int"/>
+      <xs:element name="totalWheelChairs" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="http://service.webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="getWholeSupportedMapResponse" version="1.0">
+
+  <xs:import namespace="http://service.webservice.com/"/>
+
+  <xs:complexType name="getWholeSupportedMapResponse">
+    <xs:complexContent>
+      <xs:extension base="ns1:abstractResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="countries" nillable="true" type="ns1:country"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="http://service.webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="getWholeSupportedMapRequest" version="1.0">
+
+  <xs:import namespace="http://service.webservice.com/"/>
+
+  <xs:complexType name="getWholeSupportedMapRequestImpl">
+    <xs:complexContent>
+      <xs:extension base="ns1:abstractRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="locator" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="http://service.webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="getListOfBookingsResponse" version="1.0">
+
+  <xs:import namespace="http://service.webservice.com/"/>
+
+  <xs:complexType name="getListOfBookingsResponse">
+    <xs:complexContent>
+      <xs:extension base="ns1:abstractResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="bookings" nillable="true" type="ns1:booking"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="http://service.webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="getListOfBookingsRequest" version="1.0">
+
+  <xs:import namespace="http://service.webservice.com/"/>
+
+  <xs:complexType name="getListOfBookingsRequestImpl">
+    <xs:complexContent>
+      <xs:extension base="ns1:abstractRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="locator" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="http://service.webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="getBookingResponse" version="1.0">
+
+  <xs:import namespace="http://service.webservice.com/"/>
+
+  <xs:complexType name="getBookingResponse">
+    <xs:complexContent>
+      <xs:extension base="ns1:abstractResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="cancellationCosts" nillable="true" type="ns1:cancellationCost"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="destinationActivityServices" nillable="true" type="ns1:destinationActivityService"/>
+          <xs:element minOccurs="0" name="formalizationDate" type="xs:string"/>
+          <xs:element minOccurs="0" name="grossPrice" type="ns1:amount"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="hotelServices" nillable="true" type="ns1:hotelService"/>
+          <xs:element minOccurs="0" name="lastModificationDate" type="xs:string"/>
+          <xs:element minOccurs="0" name="locator" type="xs:string"/>
+          <xs:element minOccurs="0" name="netPrice" type="ns1:amount"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="saleDetail" nillable="true" type="ns1:saleDetail"/>
+          <xs:element minOccurs="0" name="status" type="xs:string"/>
+          <xs:element minOccurs="0" name="titular" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="transferServices" nillable="true" type="ns1:transferService"/>
+          <xs:element minOccurs="0" name="yourReference" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="http://service.webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="getBookingRequest" version="1.0">
+
+  <xs:import namespace="http://service.webservice.com/"/>
+
+  <xs:complexType name="getBookingRequestImpl">
+    <xs:complexContent>
+      <xs:extension base="ns1:abstractRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="locator" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="http://service.webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="cancelBookingResponse" version="1.0">
+
+  <xs:import namespace="http://service.webservice.com/"/>
+
+  <xs:complexType name="cancelBookingResponse">
+    <xs:complexContent>
+      <xs:extension base="ns1:abstractResponse">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="http://service.webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="cancelBookingRequest" version="1.0">
+
+  <xs:import namespace="http://service.webservice.com/"/>
+
+  <xs:complexType name="cancelBookingRequestImpl">
+    <xs:complexContent>
+      <xs:extension base="ns1:abstractRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="locator" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="cancelBooking">
+    <wsdl:part name="parameters" element="tns:cancelBooking">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListOfBookings">
+    <wsdl:part name="parameters" element="tns:getListOfBookings">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWholeSupportedMapResponse">
+    <wsdl:part name="parameters" element="tns:getWholeSupportedMapResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWholeSupportedMap">
+    <wsdl:part name="parameters" element="tns:getWholeSupportedMap">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBookingResponse">
+    <wsdl:part name="parameters" element="tns:getBookingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListOfBookingsResponse">
+    <wsdl:part name="parameters" element="tns:getListOfBookingsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBooking">
+    <wsdl:part name="parameters" element="tns:getBooking">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelBookingResponse">
+    <wsdl:part name="parameters" element="tns:cancelBookingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommonsBookingService">
+    <wsdl:operation name="cancelBooking">
+      <wsdl:input name="cancelBooking" message="tns:cancelBooking">
+    </wsdl:input>
+      <wsdl:output name="cancelBookingResponse" message="tns:cancelBookingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListOfBookings">
+      <wsdl:input name="getListOfBookings" message="tns:getListOfBookings">
+    </wsdl:input>
+      <wsdl:output name="getListOfBookingsResponse" message="tns:getListOfBookingsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWholeSupportedMap">
+      <wsdl:input name="getWholeSupportedMap" message="tns:getWholeSupportedMap">
+    </wsdl:input>
+      <wsdl:output name="getWholeSupportedMapResponse" message="tns:getWholeSupportedMapResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBooking">
+      <wsdl:input name="getBooking" message="tns:getBooking">
+    </wsdl:input>
+      <wsdl:output name="getBookingResponse" message="tns:getBookingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommonsBookingServiceServiceSoapBinding" type="tns:CommonsBookingService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="cancelBooking">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="cancelBooking">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="cancelBookingResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListOfBookings">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getListOfBookings">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getListOfBookingsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWholeSupportedMap">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getWholeSupportedMap">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getWholeSupportedMapResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBooking">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getBooking">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getBookingResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="...">
+    <wsdl:port name="CommonsBookingServicePort" binding="tns:CommonsBookingServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/CommonsBookingServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
