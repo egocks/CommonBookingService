@@ -11,7 +11,7 @@ public class Server {
 		Endpoint.publish(address, impl);
 		System.out.println("Server ready...");
 		Thread.sleep(99 * 60 * 1000);
-		System.out.println("Server exiting...");
+		System.out.println("Server exciting...");
 		System.exit(0);
 	}
 }

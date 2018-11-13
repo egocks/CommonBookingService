@@ -13,21 +13,20 @@ import com.webservice.response.GetWholeSupportedMapResponse;
 
 @WebService
 public interface CommonsBookingService {
-
-/**
+	/**
 Method for Canceling booking
 */
-	public CancelBookingResponse cancelBooking(CancelBookingRequest rq);
+	public CancelBookingResponse cancelBooking(CancelBookingRequest request);
 /**
 Method for Getting booking
 */
-	public GetBookingResponse getBooking(GetBookingRequest rq);
+	public GetBookingResponse getBooking(GetBookingRequest request);
 /**
 Method for Getting list if booking
 */
-	public GetListOfBookingsResponse getListOfBookings(GetListOfBookingsRequest rq);
+	public GetListOfBookingsResponse getListOfBookings(GetListOfBookingsRequest request);
 /**
 Method for Getting whole supported map response
 */
-	public GetWholeSupportedMapResponse getWholeSupportedMap(GetWholeSupportedMapRequest rq);
+	public GetWholeSupportedMapResponse getWholeSupportedMap(GetWholeSupportedMapRequest request);
 }
